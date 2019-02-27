@@ -1,2 +1,4 @@
-# wordpress-container
-A container for wordpress
+# Wordpress Container
+
+> A simple container for Wordpress development
+
