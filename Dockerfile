@@ -22,7 +22,6 @@ RUN apt-get update \
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install xdebug-2.7.0beta1 \
     && pecl install memcached \
-    && pecl install opcache \
     && docker-php-ext-enable xdebug memcached \
     && apt-get remove -y build-essential libz-dev libmemcached-dev \
     && apt-get autoremove -y \
