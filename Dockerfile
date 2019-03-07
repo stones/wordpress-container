@@ -1,8 +1,6 @@
-FROM php:7.3-fpm
+FROM php:7.2-fpm
 
 RUN apt-get update \
-    && echo "postfix postfix/mailname string example.com" | debconf-set-selections \
-    && echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections \
     && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -10,7 +8,6 @@ RUN apt-get update \
         libz-dev \
         less \
         git \
-        postfix \
         mysql-client \
         libmemcached11 \
         libmemcachedutil2 \
@@ -25,6 +22,7 @@ RUN apt-get update \
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install xdebug-2.7.0beta1 \
     && pecl install memcached \
+    && pecl install opcache \
     && docker-php-ext-enable xdebug memcached \
     && apt-get remove -y build-essential libz-dev libmemcached-dev \
     && apt-get autoremove -y \
